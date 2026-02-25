@@ -169,7 +169,6 @@ export default function ProcessingDialog({ open, onClose, recording }) {
             const taskKwargs = {
                 samplerate: Number(samplerate),
                 baseband_format: basebandFormat,
-                start_timestamp: recording.start_time ? Math.floor(new Date(recording.start_time).getTime() / 1000) : null,
                 finish_processing: finishProcessing,
             };
 

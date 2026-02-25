@@ -18,7 +18,6 @@
 import asyncio
 import json
 import traceback
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Optional, cast
 
@@ -737,8 +736,6 @@ class ObservationExecutor:
             metadata = self._load_sigmf_metadata(recording_path)
             samplerate = self._resolve_samplerate(metadata, sdr_config, task_config)
             baseband_format = self._resolve_baseband_format(metadata)
-            start_timestamp = self._resolve_start_timestamp(metadata)
-
             output_dir = self._build_satdump_output_dir(recording_path, pipeline)
             recording_name = Path(recording_path).name
 
@@ -749,7 +746,6 @@ class ObservationExecutor:
                     kwargs={
                         "samplerate": samplerate,
                         "baseband_format": baseband_format,
-                        "start_timestamp": start_timestamp,
                         "finish_processing": True,
                         "delete_input_after": task_config.get(
                             "delete_after_post_processing", False
@@ -803,21 +799,6 @@ class ObservationExecutor:
         if "ci8" in datatype or "c8" in datatype or "cu8" in datatype:
             return "i8"
         return "f32"
-
-    def _resolve_start_timestamp(self, metadata: Dict[str, Any]) -> Optional[int]:
-        start_time = metadata.get("global", {}).get("gs:start_time")
-        if not start_time:
-            return None
-        try:
-            if start_time.endswith("Z"):
-                start_time = start_time.replace("Z", "+00:00")
-            dt = datetime.fromisoformat(start_time)
-            if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=timezone.utc)
-            return int(dt.timestamp())
-        except Exception as e:
-            logger.warning(f"Failed to parse recording start time '{start_time}': {e}")
-            return None
 
     def _build_satdump_output_dir(self, recording_path: str, pipeline: str) -> str:
         recording_base = Path(recording_path).name

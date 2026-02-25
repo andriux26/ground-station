@@ -90,7 +90,6 @@ def satdump_process_recording(
     satellite: str,
     samplerate: int = 0,
     baseband_format: str = "i16",
-    start_timestamp: Optional[int] = None,
     finish_processing: bool = True,
     delete_input_after: bool = False,
     _progress_queue: Optional[Queue] = None,
@@ -104,7 +103,6 @@ def satdump_process_recording(
         satellite: Satellite/pipeline identifier (e.g., 'meteor_m2-x_lrpt', 'noaa_apt')
         samplerate: Sample rate in Hz (0 = auto-detect from filename)
         baseband_format: Input format ('i16', 'i8', 'f32', 'w16', 'w8', etc.)
-        start_timestamp: Unix timestamp for the recording start time
         finish_processing: Whether to run product generation after decoding
         _progress_queue: Queue for sending progress updates
 
@@ -149,9 +147,6 @@ def satdump_process_recording(
         "--fill_missing",
         "--dc_block",
     ]
-
-    if start_timestamp:
-        cmd.append(f"--start_timestamp={start_timestamp}")
 
     # Log command
     if _progress_queue:
