@@ -76,6 +76,7 @@ const PreferencesForm = () => {
     }));
 
     const languageOptions = [
+        { name: 'Lietuvių', value: 'lt_LT' },
         { name: 'English', value: 'en_US' },
         { name: 'Ελληνικά', value: 'el_GR' },
         { name: 'Français', value: 'fr_FR' },
