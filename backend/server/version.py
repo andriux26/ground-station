@@ -38,7 +38,7 @@ _version_info = None
 _update_check_cache: UpdateCheckCache = {"timestamp": 0.0, "data": None}
 
 # GitHub releases endpoint (public)
-GITHUB_RELEASES_URL = "https://api.github.com/repos/sgoudelis/ground-station/releases/latest"
+GITHUB_RELEASES_URL = "https://api.github.com/repos/andriux26/ground-station/releases/latest"
 
 
 def _normalize_version(raw: str) -> str:
