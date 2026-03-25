@@ -33,6 +33,18 @@ import dashboardEN from './locales/en/dashboard.json';
 import waterfallEN from './locales/en/waterfall.json';
 import filebrowserEN from './locales/en/filebrowser.json';
 
+import commonLT from './locales/lt/common.json';
+import navigationLT from './locales/lt/navigation.json';
+import hardwareLT from './locales/lt/hardware.json';
+import settingsLT from './locales/lt/settings.json';
+import satellitesLT from './locales/lt/satellites.json';
+import trackingLT from './locales/lt/tracking.json';
+import overviewLT from './locales/lt/overview.json';
+import targetLT from './locales/lt/target.json';
+import dashboardLT from './locales/lt/dashboard.json';
+import waterfallLT from './locales/lt/waterfall.json';
+import filebrowserLT from './locales/lt/filebrowser.json';
+
 import commonEL from './locales/el/common.json';
 import navigationEL from './locales/el/navigation.json';
 import hardwareEL from './locales/el/hardware.json';
@@ -106,7 +118,20 @@ import waterfallIT from './locales/it/waterfall.json';
 import filebrowserIT from './locales/it/filebrowser.json';
 
 const resources = {
-    en: {
+lt: {
+    common: commonLT,
+    navigation: navigationLT,
+    hardware: hardwareLT,
+    settings: settingsLT,
+    satellites: satellitesLT,
+    tracking: trackingLT,
+    overview: overviewLT,
+    target: targetLT,
+    dashboard: dashboardLT,
+    waterfall: waterfallLT,
+    filebrowser: filebrowserLT,
+},
+en: {
         common: commonEN,
         navigation: navigationEN,
         hardware: hardwareEN,
