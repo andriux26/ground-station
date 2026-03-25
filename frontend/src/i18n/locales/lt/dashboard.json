@@ -17,7 +17,14 @@
     "refreshing_in": "Atnaujinama po {{seconds}} s...",
     "refreshing_now": "Atnaujinama dabar...",
     "cancel": "Atšaukti",
-    "refresh_now": "Atnaujinti dabar"
+    "refresh_now": "Atnaujinti dabar",
+    "available": "Atn.",
+    "available_full": "Yra atnaujinimas",
+    "latest": "Naujausia",
+    "published": "Paskelbta",
+    "click_to_open": "Spauskite atidaryti leidimą",
+    "unknown_date": "Nežinoma data",
+    "latest_fallback": "naujausia"
   },
   "target_popover": {
     "sections": {

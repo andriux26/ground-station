@@ -7,7 +7,7 @@
   "tle": "TLE",
   "satellite_database": {
     "title": "Palydovų duomenų bazė",
-    "subtitle": "Naršykite ir valdykite palydovų duomenų bazę, suskirstytą į grupes. Pasirinkite palydovų grupę ir peržiūrėkite jų būseną, dažnių juostas, šalis, operatorius bei misijų datas.",
+    "subtitle": "Naršykite ir valdykite palydovų duomenų bazę, suskirstytą į grupes.",
     "select_group": "Pasirinkite vieną iš palydovų grupių",
     "search_satellites": "Ieškoti palydovų",
     "search_placeholder": "Ieškoti pagal pavadinimą arba NORAD ID...",
@@ -68,7 +68,7 @@
   },
   "tle_sources": {
     "title": "TLE duomenų šaltiniai",
-    "subtitle": "Šiame puslapyje valdomi TLE (Two-Line Element) duomenų šaltiniai palydovų sekimui.",
+    "subtitle": "Šiame puslapyje valdomi TLE duomenų šaltiniai palydovų sekimui.",
     "add": "Pridėti",
     "edit": "Redaguoti",
     "delete": "Ištrinti",
@@ -82,7 +82,7 @@
     "cancel": "Atšaukti",
     "submit": "Pateikti",
     "confirm_deletion": "Patvirtinti trynimą",
-    "confirm_delete_intro": "Ar tikrai norite ištrinti pasirinktus TLE šaltinius? Bus visam laikui ištrinta:",
+    "confirm_delete_intro": "Ar tikrai norite ištrinti pasirinktus TLE šaltinius?",
     "delete_item_1": "TLE šaltinis(-iai)",
     "delete_item_2": "Visi palydovai iš pasirinktų TLE šaltinių",
     "delete_item_3": "Atitinkama palydovų grupė",
@@ -201,12 +201,12 @@
       "sat": "SAT",
       "trx": "TRX",
       "unknown": "Nežinoma",
+      "more_items": "+{{count}} daugiau...",
       "satellites_count": "{{count}} palydovai",
       "transmitters_count": "{{count}} siųstuvai",
       "no_modified_items": "Nėra pakeistų elementų",
       "no_added_items": "Nėra pridėtų elementų",
-      "no_removed_items": "Nėra pašalintų elementų",
-      "more_items": "+{{count}} daugiau..."
+      "no_removed_items": "Nėra pašalintų elementų"
     }
   }
 }
