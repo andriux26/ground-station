@@ -131,7 +131,20 @@ lt: {
     waterfall: waterfallLT,
     filebrowser: filebrowserLT,
 },
-en: {
+ lt: {
+        common: commonLT,
+        navigation: navigationLT,
+       hardware: hardwareLT,
+       settings: settingsLT,
+        satellites: satellitesLT,
+        tracking: trackingLT,
+       overview: overviewLT,
+       target: targetLT,
+       dashboard: dashboardLT,
+        waterfall: waterfallLT,
+        filebrowser: filebrowserLT,
+    },
+       en: {
         common: commonEN,
         navigation: navigationEN,
         hardware: hardwareEN,
