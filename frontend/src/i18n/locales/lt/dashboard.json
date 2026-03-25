@@ -11,7 +11,13 @@
     "connecting": "Jungiamasi",
     "establishing_connection": "Užmezgamas ryšys"
   },
-  "version_update": {
+  "version_update": {"available": "Atn.",
+    "available_full": "Yra atnaujinimas",
+    "latest": "Naujausia",
+    "published": "Paskelbta",
+    "click_to_open": "Spauskite atidaryti leidimą",
+    "unknown_date": "Nežinoma data",
+    "latest_fallback": "naujausia"
     "new_version_available": "Yra nauja versija",
     "version": "Versija {{version}}",
     "refreshing_in": "Atnaujinama po {{seconds}} s...",
