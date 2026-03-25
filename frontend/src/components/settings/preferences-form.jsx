@@ -17,8 +17,6 @@
  *
  */
 
-
-
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatePreferences, setPreference } from './preferences-slice.jsx';
@@ -56,7 +54,6 @@ const PreferencesForm = () => {
     const [localThemeValue, setLocalThemeValue] = useState('');
     const [reloading, setReloading] = useState(false);
 
-    // Track the original theme value on mount
     useEffect(() => {
         const themeValue = getPreferenceValue('theme');
         if (themeValue && !originalTheme) {
@@ -76,8 +73,8 @@ const PreferencesForm = () => {
     }));
 
     const languageOptions = [
-        { name: 'Lietuvių', value: 'lt_LT' },
         { name: 'English', value: 'en_US' },
+        { name: 'Lietuvių', value: 'lt_LT' },
         { name: 'Ελληνικά', value: 'el_GR' },
         { name: 'Français', value: 'fr_FR' },
         { name: 'Español', value: 'es_ES' },
@@ -95,13 +92,11 @@ const PreferencesForm = () => {
         { name: t('preferences.toast_position_bottom_right'), value: 'bottom-right' },
     ];
 
-    // Get theme options with metadata from theme-configs.js
     const themesOptions = getAvailableThemesWithMetadata();
 
     const handleChange = (name) => (e) => {
         const value = e.target.value;
 
-        // Special handling for theme - don't dispatch immediately
         if (name === 'theme') {
             setLocalThemeValue(value);
             if (value !== originalTheme) {
@@ -112,18 +107,15 @@ const PreferencesForm = () => {
             return;
         }
 
-        // For all other preferences, dispatch immediately
         dispatch(setPreference({ name, value }));
 
-        // If language is changed, update i18n immediately
         if (name === 'language') {
-            const languageCode = value.split('_')[0]; // 'en_US' -> 'en', 'el_GR' -> 'el'
+            const languageCode = value.split('_')[0];
             i18n.changeLanguage(languageCode);
         }
     };
 
     const handleSavePreferences = () => {
-        // If theme was changed, dispatch it now before saving
         if (themeChanged) {
             dispatch(setPreference({ name: 'theme', value: localThemeValue }));
         }
@@ -133,7 +125,6 @@ const PreferencesForm = () => {
             .then(() => {
                 toast.success(t('preferences.save_success'));
 
-                // If theme was changed, reload the page after 1 second
                 if (themeChanged) {
                     setReloading(true);
                     setTimeout(() => {
@@ -161,7 +152,7 @@ const PreferencesForm = () => {
             >
                 <CircularProgress color="inherit" />
                 <Typography variant="h6">
-                    {t('preferences.reloading', 'Reloading...')}
+                    {t('preferences.reloading', 'Perkraunama...')}
                 </Typography>
             </Backdrop>
 
@@ -171,361 +162,413 @@ const PreferencesForm = () => {
                     {t('preferences.subtitle')}
                 </Alert>
 
-            <Box component="form" sx={{ mt: 2 }}>
-                <Grid container spacing={3} columns={16}>
-                    {/* General Preferences */}
-                    <Grid size={16}>
-                        <Typography variant="subtitle1" fontWeight={500} sx={{ mb: 1 }}>
-                            {t('general')}
-                        </Typography>
-                        <Divider sx={{ mb: 2 }} />
-                    </Grid>
+                <Box component="form" sx={{ mt: 2 }}>
+                    <Grid container spacing={3} columns={16}>
+                        <Grid size={16}>
+                            <Typography variant="subtitle1" fontWeight={500} sx={{ mb: 1 }}>
+                                {t('general')}
+                            </Typography>
+                            <Divider sx={{ mb: 2 }} />
+                        </Grid>
 
-                    {/* Timezone */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.timezone')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <FormControl sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }} fullWidth variant="outlined"
-                            disabled={isLoading}
-                            size="small"
-                        >
-                            <InputLabel>{t('preferences.timezone')}</InputLabel>
-                            <Select
-                                value={getPreferenceValue('timezone')}
-                                onChange={handleChange('timezone')}
-                                label={t('preferences.timezone')}
-                                size="small">
-                                {timezoneOptions.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.name}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-
-                    {/* Locale */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>Locale (Formatting)</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <FormControl sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }} fullWidth variant="outlined"
-                            disabled={isLoading}
-                            size="small"
-                        >
-                            <InputLabel>Locale</InputLabel>
-                            <Select
-                                value={getPreferenceValue('locale') || 'browser'}
-                                onChange={handleChange('locale')}
-                                label="Locale"
-                                size="small">
-                                <MenuItem value="browser">Browser Default ({navigator.language})</MenuItem>
-                                <MenuItem value="en-US">English (United States)</MenuItem>
-                                <MenuItem value="en-GB">English (United Kingdom)</MenuItem>
-                                <MenuItem value="el-GR">Ελληνικά (Greek)</MenuItem>
-                                <MenuItem value="de-DE">Deutsch (German)</MenuItem>
-                                <MenuItem value="fr-FR">Français (French)</MenuItem>
-                                <MenuItem value="es-ES">Español (Spanish)</MenuItem>
-                                <MenuItem value="it-IT">Italiano (Italian)</MenuItem>
-                                <MenuItem value="nl-NL">Nederlands (Dutch)</MenuItem>
-                                <MenuItem value="pt-PT">Português (Portuguese)</MenuItem>
-                                <MenuItem value="ru-RU">Русский (Russian)</MenuItem>
-                                <MenuItem value="ja-JP">日本語 (Japanese)</MenuItem>
-                                <MenuItem value="zh-CN">中文 (Chinese Simplified)</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-
-                    {/* Language */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.language')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <FormControl sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }} fullWidth variant="outlined"
-                            disabled={isLoading}
-                            size="small"
-                        >
-                            <InputLabel>{t('preferences.language')}</InputLabel>
-                            <Select
-                                value={getPreferenceValue('language')}
-                                onChange={handleChange('language')}
-                                label={t('preferences.language')}
-                                size="small">
-                                {languageOptions.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.name}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-
-                    {/* Theme */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.theme')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <FormControl sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }} fullWidth variant="outlined"
-                            disabled={isLoading}
-                            size="small"
-                        >
-                            <InputLabel htmlFor={"theme-selector"}>{t('preferences.theme')}</InputLabel>
-                            <Select
-                                id={'theme-selector'}
-                                value={localThemeValue || getPreferenceValue('theme')}
-                                onChange={handleChange('theme')}
-                                label={t('preferences.theme')}
-                                size="small">
-                                {themesOptions.map((option) => (
-                                    <MenuItem key={option.id} value={option.id}>
-                                        {option.name}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                        {themeChanged && (
-                            <Alert severity="info" sx={{ mt: 1, py: 0.5 }}>
-                                {t('preferences.theme_reload_required', 'Theme will be applied after saving and reloading')}
-                            </Alert>
-                        )}
-                    </Grid>
-
-                    {/* Toast Notification Position */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.toast_position')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <FormControl sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }} fullWidth variant="outlined"
-                            disabled={isLoading}
-                            size="small"
-                        >
-                            <InputLabel htmlFor={"toast-position-selector"}>{t('preferences.toast_position')}</InputLabel>
-                            <Select
-                                id={'toast-position-selector'}
-                                value={getPreferenceValue('toast_position')}
-                                onChange={handleChange('toast_position')}
-                                label={t('preferences.toast_position')}
-                                size="small">
-                                {toastPositionOptions.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.name}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-
-                    {/* API Keys */}
-                    <Grid size={16} sx={{ mt: 2 }}>
-                        <Typography variant="subtitle1" fontWeight={500} sx={{ mb: 1 }}>
-                            {t('preferences.api_configuration')}
-                        </Typography>
-                        <Divider sx={{ mb: 2 }} />
-                    </Grid>
-
-                    {/* Stadia Maps API Key */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.stadia_maps_api_key')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <TextField
-                            fullWidth
-                            id="stadia-api-key"
-                            variant="outlined"
-                            type="text"
-                            size="small"
-                            disabled={isLoading}
-                            label={t('preferences.stadia_maps_api_key')}
-                            value={getPreferenceValue('stadia_maps_api_key')}
-                            onChange={handleChange('stadia_maps_api_key')}
-                            sx={{
-                                marginTop: 1,
-                                marginBottom: 1,
-                                '& .MuiInputBase-root': {
-                                    backgroundColor: 'transparent'
-                                }
-                            }}
-                        />
-                    </Grid>
-
-                    {/* Transcription Service */}
-                    <Grid size={16} sx={{ mt: 2 }}>
-                        <Typography variant="subtitle1" fontWeight={500} sx={{ mb: 1 }}>
-                            {t('preferences.debabel_configuration', 'Transcription')}
-                        </Typography>
-                        <Divider sx={{ mb: 2 }} />
-                    </Grid>
-
-                    {/* Gemini API Key */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.gemini_api_key', 'Gemini API Key')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <Box sx={{ backgroundColor: 'transparent' }}>
-                            <TextField
-                                style={{fontFamily: 'monospace'}}
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.timezone')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <FormControl
+                                sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }}
                                 fullWidth
-                                id="gemini-api-key"
+                                variant="outlined"
+                                disabled={isLoading}
+                                size="small"
+                            >
+                                <InputLabel>{t('preferences.timezone')}</InputLabel>
+                                <Select
+                                    value={getPreferenceValue('timezone')}
+                                    onChange={handleChange('timezone')}
+                                    label={t('preferences.timezone')}
+                                    size="small"
+                                >
+                                    {timezoneOptions.map((option) => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.locale', 'Lokalė (formatavimas)')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <FormControl
+                                sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }}
+                                fullWidth
+                                variant="outlined"
+                                disabled={isLoading}
+                                size="small"
+                            >
+                                <InputLabel>{t('preferences.locale', 'Lokalė')}</InputLabel>
+                                <Select
+                                    value={getPreferenceValue('locale') || 'browser'}
+                                    onChange={handleChange('locale')}
+                                    label={t('preferences.locale', 'Lokalė')}
+                                    size="small"
+                                >
+                                    <MenuItem value="browser">
+                                        {t('preferences.locale_browser_default', 'Numatytoji naršyklės')} ({navigator.language})
+                                    </MenuItem>
+                                    <MenuItem value="en-US">English (United States)</MenuItem>
+                                    <MenuItem value="en-GB">English (United Kingdom)</MenuItem>
+                                    <MenuItem value="lt-LT">Lietuvių (Lietuva)</MenuItem>
+                                    <MenuItem value="el-GR">Ελληνικά (Greek)</MenuItem>
+                                    <MenuItem value="de-DE">Deutsch (German)</MenuItem>
+                                    <MenuItem value="fr-FR">Français (French)</MenuItem>
+                                    <MenuItem value="es-ES">Español (Spanish)</MenuItem>
+                                    <MenuItem value="it-IT">Italiano (Italian)</MenuItem>
+                                    <MenuItem value="nl-NL">Nederlands (Dutch)</MenuItem>
+                                    <MenuItem value="pt-PT">Português (Portuguese)</MenuItem>
+                                    <MenuItem value="ru-RU">Русский (Russian)</MenuItem>
+                                    <MenuItem value="ja-JP">日本語 (Japanese)</MenuItem>
+                                    <MenuItem value="zh-CN">中文 (Chinese Simplified)</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.language')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <FormControl
+                                sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }}
+                                fullWidth
+                                variant="outlined"
+                                disabled={isLoading}
+                                size="small"
+                            >
+                                <InputLabel>{t('preferences.language')}</InputLabel>
+                                <Select
+                                    value={getPreferenceValue('language')}
+                                    onChange={handleChange('language')}
+                                    label={t('preferences.language')}
+                                    size="small"
+                                >
+                                    {languageOptions.map((option) => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.theme')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <FormControl
+                                sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }}
+                                fullWidth
+                                variant="outlined"
+                                disabled={isLoading}
+                                size="small"
+                            >
+                                <InputLabel htmlFor={"theme-selector"}>{t('preferences.theme')}</InputLabel>
+                                <Select
+                                    id={'theme-selector'}
+                                    value={localThemeValue || getPreferenceValue('theme')}
+                                    onChange={handleChange('theme')}
+                                    label={t('preferences.theme')}
+                                    size="small"
+                                >
+                                    {themesOptions.map((option) => (
+                                        <MenuItem key={option.id} value={option.id}>
+                                            {option.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            {themeChanged && (
+                                <Alert severity="info" sx={{ mt: 1, py: 0.5 }}>
+                                    {t('preferences.theme_reload_required', 'Tema bus pritaikyta po išsaugojimo ir perkrovimo')}
+                                </Alert>
+                            )}
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.toast_position')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <FormControl
+                                sx={{ minWidth: 200, marginTop: 1, marginBottom: 1 }}
+                                fullWidth
+                                variant="outlined"
+                                disabled={isLoading}
+                                size="small"
+                            >
+                                <InputLabel htmlFor={"toast-position-selector"}>
+                                    {t('preferences.toast_position')}
+                                </InputLabel>
+                                <Select
+                                    id={'toast-position-selector'}
+                                    value={getPreferenceValue('toast_position')}
+                                    onChange={handleChange('toast_position')}
+                                    label={t('preferences.toast_position')}
+                                    size="small"
+                                >
+                                    {toastPositionOptions.map((option) => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid size={16} sx={{ mt: 2 }}>
+                            <Typography variant="subtitle1" fontWeight={500} sx={{ mb: 1 }}>
+                                {t('preferences.api_configuration')}
+                            </Typography>
+                            <Divider sx={{ mb: 2 }} />
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.stadia_maps_api_key')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <TextField
+                                fullWidth
+                                id="stadia-api-key"
                                 variant="outlined"
                                 type="text"
                                 size="small"
                                 disabled={isLoading}
-                                label={t('preferences.gemini_api_key', 'Gemini API Key')}
-                                placeholder="AIza..."
-                                value={getPreferenceValue('gemini_api_key')}
-                                onChange={handleChange('gemini_api_key')}
-                                slotProps={{
-                                    formHelperText: {
-                                        sx: {
-                                            marginLeft: 0,
-                                            marginRight: 0,
+                                label={t('preferences.stadia_maps_api_key')}
+                                value={getPreferenceValue('stadia_maps_api_key')}
+                                onChange={handleChange('stadia_maps_api_key')}
+                                sx={{
+                                    marginTop: 1,
+                                    marginBottom: 1,
+                                    '& .MuiInputBase-root': {
+                                        backgroundColor: 'transparent'
+                                    }
+                                }}
+                            />
+                        </Grid>
+
+                        <Grid size={16} sx={{ mt: 2 }}>
+                            <Typography variant="subtitle1" fontWeight={500} sx={{ mb: 1 }}>
+                                {t('preferences.debabel_configuration', 'Transkripcija')}
+                            </Typography>
+                            <Divider sx={{ mb: 2 }} />
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.gemini_api_key', 'Gemini API raktas')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <Box sx={{ backgroundColor: 'transparent' }}>
+                                <TextField
+                                    style={{ fontFamily: 'monospace' }}
+                                    fullWidth
+                                    id="gemini-api-key"
+                                    variant="outlined"
+                                    type="text"
+                                    size="small"
+                                    disabled={isLoading}
+                                    label={t('preferences.gemini_api_key', 'Gemini API raktas')}
+                                    placeholder="AIza..."
+                                    value={getPreferenceValue('gemini_api_key')}
+                                    onChange={handleChange('gemini_api_key')}
+                                    slotProps={{
+                                        formHelperText: {
+                                            sx: {
+                                                marginLeft: 0,
+                                                marginRight: 0,
+                                                backgroundColor: 'transparent'
+                                            }
+                                        }
+                                    }}
+                                    autoComplete="off"
+                                    inputProps={{
+                                        autoComplete: 'off',
+                                        'data-form-type': 'other',
+                                        'data-lpignore': 'true'
+                                    }}
+                                    sx={{
+                                        marginTop: 1,
+                                        marginBottom: 0,
+                                        '& .MuiInputBase-root': {
                                             backgroundColor: 'transparent'
                                         }
-                                    }
-                                }}
-                                autoComplete="off"
-                                inputProps={{
-                                    autoComplete: 'off',
-                                    'data-form-type': 'other',
-                                    'data-lpignore': 'true'
-                                }}
-                                sx={{
-                                    marginTop: 1,
-                                    marginBottom: 0,
-                                    '& .MuiInputBase-root': {
-                                        backgroundColor: 'transparent'
-                                    }
-                                }}
-                            />
-                            <Typography variant="caption" sx={{ display: 'block', mt: '3px', ml: '14px', mr: '14px', color: 'text.secondary' }}>
-                                {t('preferences.gemini_api_key_help', 'Google Gemini API key for audio transcription. Get yours at ai.google.dev')}
-                            </Typography>
-                        </Box>
-                        <Alert severity="info" sx={{ mt: 1, fontSize: '0.75rem' }}>
-                            <AlertTitle sx={{ fontSize: '0.8rem', fontWeight: 600 }}>Privacy & Terms</AlertTitle>
-                            When enabled, audio is sent to Google's servers. You are responsible for costs (~$0.27/hour).
-                            {' '}
-                            <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
-                                Google's Terms
-                            </a>
-                            {' • '}
-                            <a href="https://github.com/sgoudelis/ground-station/blob/main/TRANSCRIPTION_PRIVACY.md" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
-                                Privacy Notice
-                            </a>
-                        </Alert>
+                                    }}
+                                />
+                                <Typography
+                                    variant="caption"
+                                    sx={{ display: 'block', mt: '3px', ml: '14px', mr: '14px', color: 'text.secondary' }}
+                                >
+                                    {t('preferences.gemini_api_key_help', 'Google Gemini API raktas garso transkripcijai. Gausite ai.google.dev')}
+                                </Typography>
+                            </Box>
+                            <Alert severity="info" sx={{ mt: 1, fontSize: '0.75rem' }}>
+                                <AlertTitle sx={{ fontSize: '0.8rem', fontWeight: 600 }}>
+                                    {t('preferences.privacy_terms', 'Privatumas ir sąlygos')}
+                                </AlertTitle>
+                                {t('preferences.gemini_privacy_notice', 'Kai įjungta, garsas siunčiamas į Google serverius. Už kaštus atsakote jūs (~$0.27/val.).')}
+                                {' '}
+                                <a
+                                    href="https://ai.google.dev/gemini-api/terms"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                    {t('preferences.google_terms', 'Google sąlygos')}
+                                </a>
+                                {' • '}
+                                <a
+                                    href="https://github.com/sgoudelis/ground-station/blob/main/TRANSCRIPTION_PRIVACY.md"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                    {t('preferences.privacy_notice', 'Privatumo pranešimas')}
+                                </a>
+                            </Alert>
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.deepgram_api_key', 'Deepgram API raktas')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <Box sx={{ backgroundColor: 'transparent' }}>
+                                <TextField
+                                    style={{ fontFamily: 'monospace' }}
+                                    fullWidth
+                                    id="deepgram-api-key"
+                                    variant="outlined"
+                                    type="text"
+                                    size="small"
+                                    disabled={isLoading}
+                                    label={t('preferences.deepgram_api_key', 'Deepgram API raktas')}
+                                    placeholder="..."
+                                    value={getPreferenceValue('deepgram_api_key')}
+                                    onChange={handleChange('deepgram_api_key')}
+                                    autoComplete="off"
+                                    inputProps={{
+                                        autoComplete: 'off',
+                                        'data-form-type': 'other',
+                                        'data-lpignore': 'true'
+                                    }}
+                                    sx={{
+                                        marginTop: 1,
+                                        marginBottom: 0,
+                                        '& .MuiInputBase-root': {
+                                            backgroundColor: 'transparent'
+                                        }
+                                    }}
+                                />
+                                <Typography
+                                    variant="caption"
+                                    sx={{ display: 'block', mt: '3px', ml: '14px', mr: '14px', color: 'text.secondary' }}
+                                >
+                                    {t('preferences.deepgram_api_key_help', 'Deepgram API raktas garso transkripcijai. Gausite deepgram.com')}
+                                </Typography>
+                            </Box>
+                            <Alert severity="info" sx={{ mt: 1, fontSize: '0.75rem' }}>
+                                <AlertTitle sx={{ fontSize: '0.8rem', fontWeight: 600 }}>
+                                    {t('preferences.privacy_terms', 'Privatumas ir sąlygos')}
+                                </AlertTitle>
+                                {t('preferences.deepgram_privacy_notice', 'Kai įjungta, garsas siunčiamas į Deepgram serverius. Už kaštus atsakote jūs (~$0.015/val.).')}
+                                {' '}
+                                <a
+                                    href="https://deepgram.com/pricing"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                    {t('preferences.deepgram_pricing', 'Deepgram kainos')}
+                                </a>
+                                {' • '}
+                                <a
+                                    href="https://github.com/sgoudelis/ground-station/blob/main/TRANSCRIPTION_PRIVACY.md"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                    {t('preferences.privacy_notice', 'Privatumo pranešimas')}
+                                </a>
+                            </Alert>
+                        </Grid>
+
+                        <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Typography>{t('preferences.google_translate_api_key', 'Google Translate API raktas')}</Typography>
+                        </Grid>
+                        <Grid size={8}>
+                            <Box sx={{ backgroundColor: 'transparent' }}>
+                                <TextField
+                                    style={{ fontFamily: 'monospace' }}
+                                    fullWidth
+                                    id="google-translate-api-key"
+                                    variant="outlined"
+                                    type="text"
+                                    size="small"
+                                    disabled={isLoading}
+                                    label={t('preferences.google_translate_api_key', 'Google Translate API raktas')}
+                                    placeholder="AIza..."
+                                    value={getPreferenceValue('google_translate_api_key')}
+                                    onChange={handleChange('google_translate_api_key')}
+                                    autoComplete="off"
+                                    inputProps={{
+                                        autoComplete: 'off',
+                                        'data-form-type': 'other',
+                                        'data-lpignore': 'true'
+                                    }}
+                                    sx={{
+                                        marginTop: 1,
+                                        marginBottom: 0,
+                                        '& .MuiInputBase-root': {
+                                            backgroundColor: 'transparent'
+                                        }
+                                    }}
+                                />
+                                <Typography
+                                    variant="caption"
+                                    sx={{ display: 'block', mt: '3px', ml: '14px', mr: '14px', color: 'text.secondary' }}
+                                >
+                                    {t('preferences.google_translate_api_key_help', 'Google Cloud Translation API raktas Deepgram transkripcijų vertimui. Gausite cloud.google.com')}
+                                </Typography>
+                            </Box>
+                            <Alert severity="info" sx={{ mt: 1, fontSize: '0.75rem' }}>
+                                <AlertTitle sx={{ fontSize: '0.8rem', fontWeight: 600 }}>
+                                    {t('preferences.privacy_terms', 'Privatumas ir sąlygos')}
+                                </AlertTitle>
+                                {t('preferences.translate_privacy_notice', 'Naudojama Deepgram transkripcijų vertimui. Tekstas siunčiamas į Google serverius. Kainos: cloud.google.com/translate/pricing.')}
+                                {' '}
+                                <a
+                                    href="https://cloud.google.com/translate/pricing"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                    {t('preferences.google_translate_pricing', 'Google Translate kainos')}
+                                </a>
+                            </Alert>
+                        </Grid>
                     </Grid>
 
-                    {/* Deepgram API Key */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.deepgram_api_key', 'Deepgram API Key')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <Box sx={{ backgroundColor: 'transparent' }}>
-                            <TextField
-                                style={{fontFamily: 'monospace'}}
-                                fullWidth
-                                id="deepgram-api-key"
-                                variant="outlined"
-                                type="text"
-                                size="small"
-                                disabled={isLoading}
-                                label={t('preferences.deepgram_api_key', 'Deepgram API Key')}
-                                placeholder="..."
-                                value={getPreferenceValue('deepgram_api_key')}
-                                onChange={handleChange('deepgram_api_key')}
-                                autoComplete="off"
-                                inputProps={{
-                                    autoComplete: 'off',
-                                    'data-form-type': 'other',
-                                    'data-lpignore': 'true'
-                                }}
-                                sx={{
-                                    marginTop: 1,
-                                    marginBottom: 0,
-                                    '& .MuiInputBase-root': {
-                                        backgroundColor: 'transparent'
-                                    }
-                                }}
-                            />
-                            <Typography variant="caption" sx={{ display: 'block', mt: '3px', ml: '14px', mr: '14px', color: 'text.secondary' }}>
-                                {t('preferences.deepgram_api_key_help', 'Deepgram API key for audio transcription. Get yours at deepgram.com')}
-                            </Typography>
-                        </Box>
-                        <Alert severity="info" sx={{ mt: 1, fontSize: '0.75rem' }}>
-                            <AlertTitle sx={{ fontSize: '0.8rem', fontWeight: 600 }}>Privacy & Terms</AlertTitle>
-                            When enabled, audio is sent to Deepgram's servers. You are responsible for costs (~$0.015/hour).
-                            {' '}
-                            <a href="https://deepgram.com/pricing" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
-                                Deepgram Pricing
-                            </a>
-                            {' • '}
-                            <a href="https://github.com/sgoudelis/ground-station/blob/main/TRANSCRIPTION_PRIVACY.md" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
-                                Privacy Notice
-                            </a>
-                        </Alert>
-                    </Grid>
-
-                    {/* Google Translate API Key */}
-                    <Grid size={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography>{t('preferences.google_translate_api_key', 'Google Translate API Key')}</Typography>
-                    </Grid>
-                    <Grid size={8}>
-                        <Box sx={{ backgroundColor: 'transparent' }}>
-                            <TextField
-                                style={{fontFamily: 'monospace'}}
-                                fullWidth
-                                id="google-translate-api-key"
-                                variant="outlined"
-                                type="text"
-                                size="small"
-                                disabled={isLoading}
-                                label={t('preferences.google_translate_api_key', 'Google Translate API Key')}
-                                placeholder="AIza..."
-                                value={getPreferenceValue('google_translate_api_key')}
-                                onChange={handleChange('google_translate_api_key')}
-                                autoComplete="off"
-                                inputProps={{
-                                    autoComplete: 'off',
-                                    'data-form-type': 'other',
-                                    'data-lpignore': 'true'
-                                }}
-                                sx={{
-                                    marginTop: 1,
-                                    marginBottom: 0,
-                                    '& .MuiInputBase-root': {
-                                        backgroundColor: 'transparent'
-                                    }
-                                }}
-                            />
-                            <Typography variant="caption" sx={{ display: 'block', mt: '3px', ml: '14px', mr: '14px', color: 'text.secondary' }}>
-                                {t('preferences.google_translate_api_key_help', 'Google Cloud Translation API key for translating Deepgram transcriptions. Get yours at cloud.google.com')}
-                            </Typography>
-                        </Box>
-                        <Alert severity="info" sx={{ mt: 1, fontSize: '0.75rem' }}>
-                            <AlertTitle sx={{ fontSize: '0.8rem', fontWeight: 600 }}>Privacy & Terms</AlertTitle>
-                            Used for translating Deepgram transcriptions. Text is sent to Google's servers. See pricing at cloud.google.com/translate/pricing.
-                            {' '}
-                            <a href="https://cloud.google.com/translate/pricing" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
-                                Google Translate Pricing
-                            </a>
-                        </Alert>
-                    </Grid>
-
-                </Grid>
-
-                <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-start' }}>
-                    <Button
-                        disabled={isLoading}
-                        variant="contained"
-                        color="primary"
-                        onClick={handleSavePreferences}
-                    >
-                        {t('preferences.save_preferences')}
-                    </Button>
+                    <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-start' }}>
+                        <Button
+                            disabled={isLoading}
+                            variant="contained"
+                            color="primary"
+                            onClick={handleSavePreferences}
+                        >
+                            {t('preferences.save_preferences')}
+                        </Button>
+                    </Box>
                 </Box>
-            </Box>
-        </Paper>
+            </Paper>
         </>
     );
 };
