@@ -1,0 +1,107 @@
+{
+  "title": "Failų naršyklė",
+  "sort_by": "Rikiuoti pagal",
+  "sort": {
+    "created": "Sukūrimo data",
+    "modified": "Modifikavimo data",
+    "name": "Pavadinimas",
+    "size": "Dydis",
+    "sample_rate": "Diskretizacijos dažnis"
+  },
+  "filter": "Filtras",
+  "filters": {
+    "recordings": "Įrašai",
+    "snapshots": "Momentinės nuotraukos",
+    "decoded": "Dekoduota",
+    "audio": "Garsas"
+  },
+  "sort_order": {
+    "ascending": "Didėjančiai",
+    "descending": "Mažėjančiai"
+  },
+  "refresh": "Atnaujinti",
+  "storage": {
+    "title": "Saugykla",
+    "used": "naudojama iš",
+    "available": "laisva"
+  },
+  "no_files": {
+    "title": "Failų nerasta",
+    "message_filter": "Įjunkite bent vieną filtrą, kad matytumėte failus",
+    "message_empty": "Darykite momentines nuotraukas arba įrašykite IQ duomenis iš waterfall rodinio"
+  },
+  "recording": {
+    "type": "Įrašas",
+    "in_progress": "Vyksta įrašymas",
+    "in_progress_message": "Vyksta įrašymas",
+    "snapshot_message": "Waterfall nuotrauka bus išsaugota sustabdžius",
+    "delete_message": "Bus ištrintas duomenų failas, metaduomenų failas ir nuotrauka."
+  },
+  "snapshot": {
+    "type": "Momentinė nuotrauka",
+    "description": "Ground Station waterfall nuotrauka"
+  },
+  "audio": {
+    "type": "Garso įrašas",
+    "description": "VFO garso įrašas",
+    "in_progress": "Įrašomas garsas",
+    "in_progress_message": "Vyksta garso įrašymas"
+  },
+  "details": {
+    "title": "Įrašo informacija",
+    "name": "Pavadinimas",
+    "files": "Failai",
+    "metadata": "Metaduomenys",
+    "captures": "Užfiksavimai",
+    "data_type": "Duomenų tipas",
+    "sample_rate": "Diskretizacijos dažnis",
+    "version": "SigMF versija",
+    "recorder": "Įrašymo programa",
+    "description": "Aprašymas",
+    "created": "Sukurta",
+    "modified": "Pakeista"
+  },
+  "actions": {
+    "view_details": "Peržiūrėti informaciją",
+    "download": "Atsisiųsti",
+    "download_data": "Atsisiųsti duomenis",
+    "download_metadata": "Atsisiųsti metaduomenis",
+    "download_snapshot": "Atsisiųsti nuotrauką",
+    "delete": "Ištrinti",
+    "cannot_delete_active": "Negalima ištrinti aktyvaus įrašo",
+    "close": "Uždaryti"
+  },
+  "delete_dialog": {
+    "title_recording": "Ištrinti įrašą",
+    "title_snapshot": "Ištrinti nuotrauką",
+    "title_decoded": "Ištrinti dekoduotą failą",
+    "title_audio": "Ištrinti garso įrašą",
+    "warning": "Šio veiksmo atšaukti negalima!",
+    "confirm": "Ar tikrai norite ištrinti",
+    "cancel": "Atšaukti",
+    "delete": "Ištrinti"
+  },
+  "batch_delete_dialog": {
+    "title": "Ištrinti kelis elementus",
+    "confirm": "Ar tikrai norite ištrinti {{count}} elementą(-us)?",
+    "message": "Bus visam laikui ištrinti visi pasirinkti įrašai ir momentinės nuotraukos."
+  },
+  "selection": {
+    "select": "Pasirinkti",
+    "exit": "Išeiti iš pasirinkimo",
+    "no_items": "Nepasirinkta jokių elementų",
+    "count": "Pasirinkta {{count}} elementų",
+    "select_all": "Pasirinkti visus",
+    "clear": "Išvalyti",
+    "delete": "Ištrinti pasirinktus"
+  },
+  "toast": {
+    "recording_deleted": "Įrašas „{{name}}“ sėkmingai ištrintas",
+    "snapshot_deleted": "Momentinė nuotrauka „{{name}}“ sėkmingai ištrinta",
+    "decoded_deleted": "Dekoduotas failas „{{name}}“ sėkmingai ištrintas",
+    "audio_deleted": "Garso įrašas „{{name}}“ sėkmingai ištrintas",
+    "delete_failed": "Nepavyko ištrinti: {{error}}",
+    "batch_delete_partial": "Kai kurių elementų nepavyko ištrinti",
+    "batch_delete_failed": "Nepavyko ištrinti elementų: {{error}}"
+  }
+}

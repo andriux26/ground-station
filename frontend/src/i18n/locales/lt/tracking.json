@@ -1,0 +1,18 @@
+{
+  "title": "Sekimas",
+  "select_satellite": "Pasirinkti palydovą",
+  "track": "Sekti",
+  "stop_tracking": "Stabdyti sekimą",
+  "passes": "Praskridimai",
+  "next_pass": "Kitas praskridimas",
+  "current_pass": "Dabartinis praskridimas",
+  "aos": "AOS",
+  "los": "LOS",
+  "max_elevation": "Maks. aukštis",
+  "azimuth": "Azimutas",
+  "elevation": "Aukštis",
+  "range": "Atstumas",
+  "velocity": "Greitis",
+  "doppler": "Dopleris",
+  "frequency": "Dažnis"
+}

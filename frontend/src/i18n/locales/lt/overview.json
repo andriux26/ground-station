@@ -1,0 +1,132 @@
+{
+  "title": "Vaizdas iš viršaus",
+  "satellites_table": {
+    "title": "Palydovų grupės informacija",
+    "satellites_count": "{{count}} palydovai",
+    "satellite_name": "Palydovo pavadinimas",
+    "alternative_name": "Alternatyvus pavadinimas",
+    "norad": "NORAD",
+    "elevation": "Aukštis",
+    "status": "Būsena",
+    "transmitters": "Siųstuvai",
+    "countries": "Šalys",
+    "decayed": "Nusileidęs",
+    "updated": "Atnaujinta",
+    "launched": "Paleistas",
+    "no_alternative_names": "Nėra alternatyvių pavadinimų",
+    "status_unknown": "Nežinoma",
+    "status_active": "Aktyvus",
+    "status_inactive": "Neaktyvus",
+    "status_reentered": "Sugrįžęs į atmosferą",
+    "invalid_date": "Neteisinga data",
+    "na": "N/A",
+    "no_group_selected": "Pasirinkite palydovų grupę"
+  },
+  "satellites_table_settings": {
+    "title": "Palydovų lentelės nustatymai",
+    "description": "Pasirinkite, kuriuos stulpelius rodyti palydovų lentelėje",
+    "rows_per_page": "Eilučių puslapyje",
+    "category_basic": "Pagrindinė informacija",
+    "category_names": "Palydovų pavadinimai",
+    "category_metadata": "Metaduomenys",
+    "always_visible": "visada rodoma",
+    "close": "Uždaryti"
+  },
+  "passes_table": {
+    "title": "Praskridimai per artimiausias {{hours}} valandas",
+    "cached": "iš talpyklos",
+    "name": "Pavadinimas",
+    "alternative_name": "Alternatyvus pavadinimas",
+    "name_other": "Kitas pavadinimas",
+    "peak_elevation": "Piko aukštis",
+    "current_elevation": "Dabartinis aukštis",
+    "progress": "Eiga",
+    "duration": "Trukmė",
+    "bands": "Juostos",
+    "start": "Pradžia",
+    "end": "Pabaiga",
+    "distance_aos": "Atstumas ties AOS",
+    "distance_los": "Atstumas ties LOS",
+    "distance_peak": "Atstumas piko metu",
+    "geo_stat": "GEO būsena",
+    "geo_sync": "GEO sinchr.",
+    "no_value": "nėra reikšmės",
+    "no_data": "Nėra duomenų",
+    "no_passes": "Artimiausioms {{hours}} valandoms praskridimų nerasta"
+  },
+  "passes_table_settings": {
+    "title": "Praskridimų lentelės nustatymai",
+    "description": "Pasirinkite, kuriuos stulpelius rodyti praskridimų lentelėje",
+    "rows_per_page": "Eilučių puslapyje",
+    "category_basic": "Pagrindinė informacija",
+    "category_names": "Palydovų pavadinimai",
+    "category_time": "Laiko informacija",
+    "category_distance": "Atstumo informacija",
+    "category_orbital": "Orbitinė informacija",
+    "always_visible": "visada rodoma",
+    "close": "Uždaryti"
+  },
+  "satellite_selector": {
+    "title": "Pasirinkite palydovų grupę",
+    "group_label": "Grupė",
+    "user_groups": "Vartotojo sukurtos grupės",
+    "tle_groups": "Iš TLE gautos grupės",
+    "failed_load_groups": "Nepavyko įkelti palydovų grupių",
+    "none_defined": "Nėra"
+  },
+  "satellite_info": {
+    "title": "Palydovo informacija",
+    "loading": "Kraunami palydovo duomenys...",
+    "no_satellite": "Palydovas nepasirinktas",
+    "select_satellite": "Pasirinkite palydovą iš sąrašo arba žemėlapio",
+    "no_satellite_selected": "Pasirinkite palydovą detalesnei informacijai",
+    "position_data": "POZICIJOS DUOMENYS",
+    "orbital_data": "ORBITINIAI DUOMENYS",
+    "communication": "RYŠYS",
+    "metadata": "METADUOMENYS",
+    "latitude": "PLATUMA",
+    "longitude": "ILGUMA",
+    "azimuth": "AZIMUTAS",
+    "elevation": "AUKŠTIS",
+    "altitude": "ALTITUDĖ",
+    "velocity": "GREITIS",
+    "frequency_bands": "DAŽNIŲ JUOSTOS",
+    "modulations": "MODULIACIJOS",
+    "no_modulations": "Moduliacijų nerasta",
+    "countries": "ŠALYS",
+    "last_update": "PASKUTINIS ATNAUJINIMAS",
+    "unknown": "Nežinoma",
+    "currently_targeted": "DABAR PASIRINKTAS",
+    "set_as_target": "PASIRINKTI TAIKINIU",
+    "failed_tracking": "Nepavyko paleisti sekimo su rotatoriumi"
+  },
+  "weather": {
+    "title": "Orai",
+    "no_data": "Nėra orų duomenų",
+    "feels": "Jaučiasi",
+    "humidity": "Drėgmė",
+    "wind": "Vėjas",
+    "pressure": "Slėgis"
+  },
+  "map_settings": {
+    "title": "Žemėlapio nustatymai",
+    "close": "Uždaryti"
+  },
+  "map_target": {
+    "already_tracking": "Šis palydovas jau sekamas",
+    "start_tracking": "Pradėti sekti {{name}}?",
+    "set_target": "PASIRINKTI TAIKINIU",
+    "view_details": "Peržiūrėti palydovo informaciją",
+    "start_tracking_tooltip": "Pradėti sekti {{name}} su rotatoriumi ir radiju"
+  },
+  "map_controls": {
+    "go_home": "Grįžti namo",
+    "go_to_center": "Eiti į žemėlapio centrą",
+    "go_fullscreen": "Visas ekranas",
+    "map_settings": "Žemėlapio nustatymai"
+  },
+  "weather_errors": {
+    "fetch_failed": "Nepavyko gauti orų duomenų",
+    "failed_to_fetch": "Nepavyko gauti orų duomenų"
+  }
+}

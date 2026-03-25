@@ -1,0 +1,178 @@
+{
+  "map_settings": {
+    "title": "Žemėlapio nustatymai",
+    "close": "Uždaryti"
+  },
+  "map_controls": {
+    "map_settings": "Žemėlapio nustatymai",
+    "go_home": "Grįžti namo",
+    "go_to_center": "Eiti į žemėlapio centrą",
+    "go_fullscreen": "Visas ekranas"
+  },
+  "next_passes": {
+    "title": "Artimiausi {{name}} praskridimai per {{hours}} valandas",
+    "start": "Pradžia",
+    "end": "Pabaiga",
+    "duration": "Trukmė",
+    "progress": "Eiga",
+    "distance_aos": "Atstumas ties AOS",
+    "distance_los": "Atstumas ties LOS",
+    "distance_peak": "Atstumas pike",
+    "max_el": "Maks. aukštis",
+    "geo_stat": "GEO būsena",
+    "geo_sync": "GEO sinchr.",
+    "no_satellite_selected": "Pasirinkite palydovą praskridimams peržiūrėti"
+  },
+  "passes_table_settings": {
+    "title": "Praskridimų lentelės nustatymai",
+    "description": "Pasirinkite, kuriuos stulpelius rodyti praskridimų lentelėje",
+    "rows_per_page": "Eilučių puslapyje",
+    "category_time": "Laiko informacija",
+    "category_basic": "Pagrindinė informacija",
+    "category_distance": "Atstumo informacija",
+    "category_orbital": "Orbitinė informacija",
+    "always_visible": "visada rodoma",
+    "close": "Uždaryti"
+  },
+  "pass_timeline": {
+    "title": "Praskridimų laiko juosta {{name}} – artimiausios {{hours}} valandos"
+  },
+  "timeline": {
+    "zoomIn": "Priartinti",
+    "zoomOut": "Atitolinti",
+    "resetZoom": "Atstatyti mastelį",
+    "sunrise": "Saulėtekis",
+    "sunset": "Saulėlydis",
+    "now": "DABAR",
+    "noPassesAvailable": "Nėra galimų praskridimų",
+    "noPassesForSelected": "Pasirinktam {{hours}} laikui praskridimų nėra",
+    "active": "AKTYVUS",
+    "start": "Pradžia",
+    "end": "Pabaiga",
+    "duration": "Trukmė",
+    "maxElevation": "Maks. aukštis",
+    "minDistance": "Min. atstumas"
+  },
+  "rig_control": {
+    "title": "Radijo valdymas",
+    "connected": "Prisijungta",
+    "not_connected": "Neprisijungta",
+    "unknown": "Nežinoma",
+    "failed_start_tracking": "Nepavyko pradėti sekimo",
+    "on_rig": "Radijuje:",
+    "doppler_shift": "Doplerio poslinkis:",
+    "transmitted": "Siunčiama:",
+    "observed": "Stebima:",
+    "connect": "PRISIJUNGTI",
+    "disconnect": "ATSIJUNGTI",
+    "track_radio": "SEKTI RADIJĄ",
+    "stop": "STOP"
+  },
+  "rotator_control": {
+    "title": "Rotatoriaus valdymas",
+    "failed_start_tracking": "Nepavyko pradėti sekimo su rotatoriumi",
+    "az": "AZ:",
+    "el": "EL:",
+    "ccw": "⟲ PRIEŠ L",
+    "cw": "PAGAL L ⟳",
+    "up": "↑ AUKŠTYN",
+    "down": "ŽEMYN ↓",
+    "connect": "PRISIJUNGTI",
+    "disconnect": "ATSIJUNGTI",
+    "park": "PARKUOTI",
+    "track": "SEKTI",
+    "stop": "STOP"
+  },
+  "satellite_search": {
+    "search_label": "Ieškoti palydovų (pagal pavadinimą arba NORAD ID)"
+  },
+  "satellite_dropdown": {
+    "label": "Palydovas"
+  },
+  "satellite_info": {
+    "title": "Palydovo info",
+    "sections": {
+      "position_data": "POZICIJOS DUOMENYS",
+      "orbital_data": "ORBITINIAI DUOMENYS",
+      "metadata": "METADUOMENYS"
+    },
+    "labels": {
+      "latitude": "PLATUMA",
+      "longitude": "ILGUMA",
+      "azimuth": "AZIMUTAS",
+      "elevation": "AUKŠTIS",
+      "altitude": "ALTITUDĖ",
+      "velocity": "GREITIS",
+      "geostationary": "GEOSTACIONARUS",
+      "launch_date": "PALEIDIMO DATA",
+      "added_to_db": "PRIDĖTA Į DB",
+      "countries": "ŠALYS",
+      "alternative_name": "ALTERNATYVUS PAVADINIMAS",
+      "satellite_id": "PALYDOVO ID"
+    },
+    "values": {
+      "yes": "TAIP",
+      "no": "NE",
+      "na": "N/A"
+    }
+  },
+  "errors": {
+    "failed_get_tracking_state": "Nepavyko gauti sekimo būsenos"
+  },
+  "group_dropdown": {
+    "label": "Grupė",
+    "user_groups": "Vartotojo sukurtos palydovų grupės",
+    "tle_groups": "TLE šaltinių grupės",
+    "none_created": "Nėra"
+  },
+  "rig_control_labels": {
+    "rig_label": "Radijas",
+    "vfo_label": "VFO",
+    "transmitter_label": "Siųstuvas",
+    "no_rig_control": "[nėra radijo valdymo]",
+    "select_rig": "pasirinkite radiją",
+    "select_sdr": "pasirinkite SDR",
+    "no_vfo_control": "[nėra VFO valdymo]",
+    "select_vfo": "pasirinkite VFO",
+    "no_frequency_control": "[nėra dažnio valdymo]",
+    "select_transmitter": "pasirinkite siųstuvą",
+    "no_transmitters": "Šiam palydovui nėra siųstuvų"
+  },
+  "rotator_control_labels": {
+    "rotator_label": "Rotatorius",
+    "none": "Nėra",
+    "rotators": "Rotatoriai",
+    "no_rotator_control": "[nėra rotatoriaus valdymo]",
+    "select_rotator": "pasirinkite rotatorių"
+  },
+  "satellite_selector": {
+    "title": "Pasirinkite palydovą",
+    "stop_tracking": "STABDYTI SEKIMĄ"
+  },
+  "satellite_map": {
+    "title": "Tikslo sekimas"
+  },
+  "satellite_transmitters": {
+    "title": "Siųstuvai",
+    "count": "Kiekis",
+    "sections": {
+      "communication_overview": "RYŠIO APŽVALGA",
+      "transmitter_details": "SIŲSTUVŲ INFORMACIJA"
+    },
+    "labels": {
+      "total": "IŠ VISO",
+      "active": "AKTYVŪS",
+      "inactive": "NEAKTYVŪS",
+      "frequency_bands": "DAŽNIŲ JUOSTOS",
+      "downlink": "Downlink",
+      "mode": "Režimas",
+      "baud": "Baudas",
+      "band": "Juosta"
+    },
+    "messages": {
+      "frequency_violation": "⚠️ DAŽNIO PAŽEIDIMAS",
+      "no_transmitters": "Siųstuvų nėra",
+      "no_transmitters_desc": "Šis palydovas neturi registruotų siųstuvų."
+    }
+  }
+}

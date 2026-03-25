@@ -1,0 +1,19 @@
+{
+  "tracking": "Sekimas",
+  "birds_eye_view": "Vaizdas iš viršaus",
+  "tracking_console": "Sekimo konsolė",
+  "waterfall_view": "Waterfall vaizdas",
+  "hardware": "Įranga",
+  "rigs": "Radai",
+  "rotators": "Rotatoriai",
+  "cameras": "Kameros",
+  "sdrs": "SDR",
+  "satellites": "Palydovai",
+  "tle_sources": "TLE šaltiniai",
+  "groups": "Grupės",
+  "settings": "Nustatymai",
+  "preferences": "Parinktys",
+  "location": "Vieta",
+  "maintenance": "Priežiūra",
+  "about": "Apie"
+}

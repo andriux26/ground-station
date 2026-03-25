@@ -1,0 +1,122 @@
+{
+  "app_name": "Ground Station",
+  "loading": "Kraunama...",
+  "error": "Klaida",
+  "success": "Sėkmė",
+  "save": "Išsaugoti",
+  "cancel": "Atšaukti",
+  "delete": "Ištrinti",
+  "edit": "Redaguoti",
+  "add": "Pridėti",
+  "close": "Uždaryti",
+  "confirm": "Patvirtinti",
+  "yes": "Taip",
+  "no": "Ne",
+  "search": "Ieškoti",
+  "filter": "Filtruoti",
+  "actions": "Veiksmai",
+  "name": "Pavadinimas",
+  "description": "Aprašymas",
+  "status": "Būsena",
+  "connected": "Prisijungta",
+  "disconnected": "Atsijungta",
+  "online": "Prisijungęs",
+  "offline": "Atsijungęs",
+  "notifications": {
+    "connection": {
+      "connected_to_backend": "Prisijungta prie backend",
+      "reconnecting_to_backend": "Jungiamasi prie backend iš naujo",
+      "attempt": "Bandymas {{attempt}}",
+      "connection_error": "Ryšio klaida",
+      "lost_connection": "Prarastas ryšys su backend"
+    },
+    "sync": {
+      "tle_sync_complete": "TLE sinchronizacija baigta!",
+      "new_items": "Nauja: {{satellites}} palydovų, {{transmitters}} siųstuvų",
+      "modified_items": "Pakeista: {{satellites}} palydovų, {{transmitters}} siųstuvų",
+      "removed_items": "Pašalinta: {{satellites}} palydovų, {{transmitters}} siųstuvų",
+      "no_changes": "Pakeitimų nerasta"
+    },
+    "rotator": {
+      "connected": "Rotatorius prijungtas",
+      "disconnected": "Rotatorius atjungtas"
+    },
+    "radio": {
+      "connected": "Radijas prijungtas",
+      "disconnected": "Radijas atjungtas"
+    },
+    "tracking": {
+      "elevation_below_horizon": "Tikslo aukštis žemiau horizonto",
+      "azimuth_out_of_bounds": "Tikslo azimutas už ribų",
+      "below_min_elevation": "Tikslas žemiau minimalaus aukščio",
+      "above_max_elevation": "Tikslas aukščiau maksimalaus aukščio",
+      "below_min_azimuth": "Tikslas žemiau minimalaus azimuto",
+      "above_max_azimuth": "Tikslas aukščiau maksimalaus azimuto",
+      "satellite_changed": "Pakeistas tikslinis palydovas",
+      "satellite_info": "{{name}} (NORAD {{noradId}})"
+    },
+    "decoder": {
+      "output_received": "Gautas dekoderio išėjimas"
+    }
+  },
+  "humanize": {
+    "bytes": {
+      "bytes": "Baitai",
+      "kb": "KB",
+      "mb": "MB",
+      "gb": "GB",
+      "tb": "TB"
+    },
+    "date": {
+      "just_now": "Ką tik",
+      "minute_ago": "prieš {{count}} minutę",
+      "minutes_ago": "prieš {{count}} minutes",
+      "hour_ago": "prieš {{count}} valandą",
+      "hours_ago": "prieš {{count}} valandas",
+      "day_ago": "prieš {{count}} dieną",
+      "days_ago": "prieš {{count}} dienas",
+      "week_ago": "prieš {{count}} savaitę",
+      "weeks_ago": "prieš {{count}} savaites",
+      "month_ago": "prieš {{count}} mėnesį",
+      "months_ago": "prieš {{count}} mėnesius",
+      "year_ago": "prieš {{count}} metus",
+      "years_ago": "prieš {{count}} metus",
+      "never": "Niekada"
+    }
+  },
+  "satellite_status": {
+    "alive": "Aktyvus",
+    "dead": "Neaktyvus",
+    "re_entered": "Sugrįžęs į atmosferą",
+    "future": "Būsimas",
+    "not_available": "n/a"
+  },
+  "transmitter_status": {
+    "active": "Aktyvus",
+    "inactive": "Neaktyvus",
+    "invalid": "Neteisingas"
+  },
+  "map_settings": {
+    "orbit_projection_time": "Orbitos projekcijos laikas",
+    "tile_layer": "Žemėlapio sluoksnis",
+    "time_options": {
+      "1_hour": "1 valanda",
+      "2_hours": "2 valandos",
+      "4_hours": "4 valandos",
+      "8_hours": "8 valandos",
+      "12_hours": "12 valandų",
+      "24_hours": "24 valandos"
+    },
+    "satellite_coverage": "Palydovo aprėptis",
+    "past_orbit_path": "Praeitos orbitos braižymas",
+    "future_orbit_path": "Būsimos orbitos braižymas",
+    "show_sun": "Rodyti saulę",
+    "show_moon": "Rodyti mėnulį",
+    "day_night_separator": "Dienos/nakties riba",
+    "satellite_tooltip": "Palydovo užuomina",
+    "coordinate_grid": "Koordinačių tinklelis",
+    "footprint_color": "Aprėpties spalva",
+    "past_orbit_color": "Praeitos orbitos spalva",
+    "future_orbit_color": "Būsimos orbitos spalva"
+  }
+}
