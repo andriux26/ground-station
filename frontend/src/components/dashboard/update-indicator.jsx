@@ -24,21 +24,21 @@ function UpdateIndicator({ compact = true }) {
         return null;
     }
 
-    const latestLabel = data?.latestTag || data?.latestVersion || 'latest';
+    const latestLabel = data?.latestTag || data?.latestVersion || t('version_update.latest_fallback', 'naujausia');
     const publishedAt = data?.publishedAt
         ? new Date(data.publishedAt).toLocaleDateString()
-        : t('version_update.unknown_date', 'Unknown date');
+        : t('version_update.unknown_date', 'Nežinoma data');
 
     const tooltip = (
         <Box sx={{ fontSize: '0.75rem', lineHeight: 1.4 }}>
             <Box>
-                {t('version_update.latest', 'Latest')}: {latestLabel}
+                {t('version_update.latest', 'Naujausia')}: {latestLabel}
             </Box>
             <Box>
-                {t('version_update.published', 'Published')}: {publishedAt}
+                {t('version_update.published', 'Paskelbta')}: {publishedAt}
             </Box>
             <Box>
-                {t('version_update.click_to_open', 'Click to open release')}
+                {t('version_update.click_to_open', 'Spauskite atidaryti leidimą')}
             </Box>
         </Box>
     );
@@ -47,7 +47,9 @@ function UpdateIndicator({ compact = true }) {
         <Tooltip title={tooltip} placement="bottom-start">
             <Chip
                 icon={<NewReleasesIcon />}
-                label={compact ? t('version_update.available', 'Update') : t('version_update.available_full', 'Update available')}
+                label={compact
+                    ? t('version_update.available', 'Atn.')
+                    : t('version_update.available_full', 'Yra atnaujinimas')}
                 size="small"
                 color="warning"
                 onClick={() => {
