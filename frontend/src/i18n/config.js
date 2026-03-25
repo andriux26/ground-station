@@ -118,33 +118,7 @@ import waterfallIT from './locales/it/waterfall.json';
 import filebrowserIT from './locales/it/filebrowser.json';
 
 const resources = {
-lt: {
-    common: commonLT,
-    navigation: navigationLT,
-    hardware: hardwareLT,
-    settings: settingsLT,
-    satellites: satellitesLT,
-    tracking: trackingLT,
-    overview: overviewLT,
-    target: targetLT,
-    dashboard: dashboardLT,
-    waterfall: waterfallLT,
-    filebrowser: filebrowserLT,
-},
- lt: {
-        common: commonLT,
-        navigation: navigationLT,
-       hardware: hardwareLT,
-       settings: settingsLT,
-        satellites: satellitesLT,
-        tracking: trackingLT,
-       overview: overviewLT,
-       target: targetLT,
-       dashboard: dashboardLT,
-        waterfall: waterfallLT,
-        filebrowser: filebrowserLT,
-    },
-       en: {
+    en: {
         common: commonEN,
         navigation: navigationEN,
         hardware: hardwareEN,
@@ -156,6 +130,19 @@ lt: {
         dashboard: dashboardEN,
         waterfall: waterfallEN,
         filebrowser: filebrowserEN,
+    },
+    lt: {
+        common: commonLT,
+        navigation: navigationLT,
+        hardware: hardwareLT,
+        settings: settingsLT,
+        satellites: satellitesLT,
+        tracking: trackingLT,
+        overview: overviewLT,
+        target: targetLT,
+        dashboard: dashboardLT,
+        waterfall: waterfallLT,
+        filebrowser: filebrowserLT,
     },
     el: {
         common: commonEL,
@@ -241,11 +228,11 @@ i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: 'en', // default language
+        lng: 'en',
         fallbackLng: 'en',
         defaultNS: 'common',
         interpolation: {
-            escapeValue: false, // React already escapes values
+            escapeValue: false,
         },
         react: {
             useSuspense: true,
